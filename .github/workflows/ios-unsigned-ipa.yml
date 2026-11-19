@@ -1,0 +1,133 @@
+name: Build unsigned IPA
+
+# 出的是未签名 .ipa，用来侧载进 LiveContainer / Sideloadly / AltStore。
+# - 不申请、不使用任何 Apple 证书与描述文件
+# - 每次推 tag（v*）或手动触发都会出一个可下载的 Artifact
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "版本号写入 IPA 名（如 1.2.1）"
+        required: false
+        default: "1.2.1"
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-14
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Show toolchain
+        run: |
+          xcodebuild -version
+          xcrun --sdk iphoneos --show-sdk-version
+
+      - name: Resolve version
+        id: v
+        env:
+          INPUT_VERSION: ${{ github.event.inputs.version }}
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            VER="${GITHUB_REF_NAME#v}"
+          else
+            VER="${INPUT_VERSION}"
+          fi
+          [ -z "$VER" ] && VER="0.0.0"
+          echo "ver=$VER" >> "$GITHUB_OUTPUT"
+          echo "version=$VER"
+
+      - name: Build .app (no code signing)
+        working-directory: wrapapp/ios/WebShell
+        run: |
+          set -x
+          xcodebuild \
+            -project WebShell.xcodeproj \
+            -scheme WebShell \
+            -configuration Release \
+            -sdk iphoneos \
+            -derivedDataPath "$RUNNER_TEMP/dd" \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            DEVELOPMENT_TEAM="" \
+            PROVISIONING_PROFILE_SPECIFIER="" \
+            -archivePath "$RUNNER_TEMP/WebShell.xcarchive" \
+            archive
+
+      - name: Assemble unsigned .ipa
+        id: ipa
+        env:
+          VER_OUT: ${{ steps.v.outputs.ver }}
+        run: |
+          set -euo pipefail
+          APP="$RUNNER_TEMP/dd/Build/Products/Release-iphoneos/WebShell.app"
+          if [ ! -d "$APP" ]; then
+            APP="$RUNNER_TEMP/WebShell.xcarchive/Products/Applications/WebShell.app"
+          fi
+          echo "app bundle: $APP"
+          ls -la "$APP"
+
+          # 主二进制必须可执行；去掉任何残留签名产物
+          chmod 0755 "$APP/WebShell"
+          rm -rf "$APP/_CodeSignature" "$APP/SC_Info" "$APP/embedded.mobileprovision"
+
+          # 只保留 arm64（App Store 之外的侧载不需要别的架构）
+          if command -v lipo >/dev/null; then
+            lipo -info "$APP/WebShell" || true
+            ARCHS=$(lipo -archs "$APP/WebShell" 2>/dev/null || echo "")
+            if echo "$ARCHS" | grep -qw arm64; then
+              lipo "$APP/WebShell" -thin arm64 -output "$APP/WebShell.arm64" && \
+              mv "$APP/WebShell.arm64" "$APP/WebShell" && chmod 0755 "$APP/WebShell"
+            fi
+          fi
+
+          VER="${VER_OUT:-${GITHUB_REF_NAME#v}}"
+          VER="${VER:-0.0.0}"
+          mkdir -p "$GITHUB_WORKSPACE/wrapapp/dist-rel"
+          OUT="$GITHUB_WORKSPACE/wrapapp/dist-rel/badnews-webshell-${VER}-unsigned.ipa"
+          rm -rf "$RUNNER_TEMP/Payload"
+          mkdir -p "$RUNNER_TEMP/Payload"
+          cp -R "$APP" "$RUNNER_TEMP/Payload/"
+          ( cd "$RUNNER_TEMP" && /usr/bin/zip -qry "$OUT" Payload )
+
+          shasum -a 256 "$OUT" | tee "$OUT.sha256"
+          ls -l "$OUT"
+          BASENAME=$(basename "$OUT")
+          echo "basename=$BASENAME" >> "$GITHUB_OUTPUT"
+
+      - name: Verify bundle layout
+        env:
+          IPA_NAME: ${{ steps.ipa.outputs.basename }}
+        run: |
+          set -e
+          OUT="wrapapp/dist-rel/${IPA_NAME}"
+          unzip -l "$OUT" | head -20
+          # 结构必须是从 Payload/WebShell.app/ 起
+          unzip -l "$OUT" | grep -q "Payload/WebShell.app/WebShell$" \
+            && echo "OK: Payload/WebShell.app/WebShell" \
+            || { echo "BAD LAYOUT"; exit 1; }
+          # 不能残留签名
+          if unzip -l "$OUT" | grep -qE "_CodeSignature|embedded.mobileprovision"; then
+            echo "BAD: 残留签名产物"; exit 1
+          fi
+          echo "OK: 无签名残留"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: badnews-webshell-unsign
+          path: |
+            wrapapp/dist-rel/*.ipa
+            wrapapp/dist-rel/*.sha256
+          if-no-files-found: error
+          retention-days: 30

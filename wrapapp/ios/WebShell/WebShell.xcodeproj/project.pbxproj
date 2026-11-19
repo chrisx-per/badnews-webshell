@@ -1,0 +1,262 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		57F30BE016EC59939E4EE5B2B82A42FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D281E98C229353A5B04248150858ABCF /* AppDelegate.swift */; };
+		BAF1541606D55E62A5248A145DAD440D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31A44F2EB5F54229607A537552690CB /* ViewController.swift */; };
+		E41C49476D2858D6B34C7A23DB599E4B /* hs-player.user.js in Resources */ = {isa = PBXBuildFile; fileRef = 2C9DFBFDADA956E384C588076FB353A9 /* hs-player.user.js */; };
+		A1C0F00D000000000000C0DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1C0F00D000000000000C0DE /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3D659FE47E0D58F8B655FCD523C2776B /* WebShell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WebShell.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D281E98C229353A5B04248150858ABCF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D31A44F2EB5F54229607A537552690CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9C41041371E25D73A96FD7FBB4F072CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C9DFBFDADA956E384C588076FB353A9 /* hs-player.user.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "hs-player.user.js"; sourceTree = "<group>"; };
+		A1C0F00D000000000000C0DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B5D8AFB59D14517DB552D3C19AD42510 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		916B527B72255949AC1129A7E21889ED = {
+			isa = PBXGroup;
+			children = (
+				1C82739BB824521282B3CAB7D4382CF9 /* WebShell */,
+				C5E6914C3DC7522CA3EE3B9DCF85A647 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C5E6914C3DC7522CA3EE3B9DCF85A647 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3D659FE47E0D58F8B655FCD523C2776B /* WebShell.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1C82739BB824521282B3CAB7D4382CF9 /* WebShell */ = {
+			isa = PBXGroup;
+			children = (
+				D281E98C229353A5B04248150858ABCF /* AppDelegate.swift */,
+				D31A44F2EB5F54229607A537552690CB /* ViewController.swift */,
+				2C9DFBFDADA956E384C588076FB353A9 /* hs-player.user.js */,
+				A1C0F00D000000000000C0DE /* Assets.xcassets */,
+				9C41041371E25D73A96FD7FBB4F072CF /* Info.plist */,
+			);
+			path = WebShell;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3CAEB8050FBD541491A7DB5ADDA24804 /* WebShell */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E2EA11AE38A95DDEA2D9C25194D590B2 /* Build configuration list for PBXNativeTarget "WebShell" */;
+			buildPhases = (
+				8602D2608E395C86863EB0CECF816C91 /* Sources */,
+				B5D8AFB59D14517DB552D3C19AD42510 /* Frameworks */,
+				0F29376673F15825BA55340A0410DDE0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WebShell;
+			productName = WebShell;
+			productReference = 3D659FE47E0D58F8B655FCD523C2776B /* WebShell.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		117F766BCB6059E3B2F2A711B3F572FA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					3CAEB8050FBD541491A7DB5ADDA24804 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = 9564C19C152C5AB4B28FF90B7A9CE900 /* Build configuration list for PBXProject "WebShell" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				"zh-Hans",
+			);
+			mainGroup = 916B527B72255949AC1129A7E21889ED;
+			productRefGroup = C5E6914C3DC7522CA3EE3B9DCF85A647 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3CAEB8050FBD541491A7DB5ADDA24804 /* WebShell */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0F29376673F15825BA55340A0410DDE0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E41C49476D2858D6B34C7A23DB599E4B /* hs-player.user.js in Resources */,
+				A1C0F00D000000000000C0DF /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8602D2608E395C86863EB0CECF816C91 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BAF1541606D55E62A5248A145DAD440D /* ViewController.swift in Sources */,
+				57F30BE016EC59939E4EE5B2B82A42FB /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		F17A84BF2652588E863568A1879EA503 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A448F36AEF3D57418E64C3E8EDAB763A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2143BA82CB46585193690213D750AC36 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGNING_ALLOWED = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = WebShell/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = news.bad.wrap;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		2652F475949251FE9E3F5FD63813EEBF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGNING_ALLOWED = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = WebShell/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = news.bad.wrap;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9564C19C152C5AB4B28FF90B7A9CE900 /* Build configuration list for PBXProject "WebShell" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F17A84BF2652588E863568A1879EA503 /* Debug */,
+				A448F36AEF3D57418E64C3E8EDAB763A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E2EA11AE38A95DDEA2D9C25194D590B2 /* Build configuration list for PBXNativeTarget "WebShell" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2143BA82CB46585193690213D750AC36 /* Debug */,
+				2652F475949251FE9E3F5FD63813EEBF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 117F766BCB6059E3B2F2A711B3F572FA /* Project object */;
+}
